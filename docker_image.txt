@@ -1,0 +1,14 @@
+# Set the base image: choose the same Python version as the one used to develop everything.
+FROM python:3.7.1
+ 
+COPY api.py .
+COPY model .
+ 
+# Install the app requirements: choose the same library versions as the ones used to develop everything.
+RUN pip install --upgrade pip \
+    && pip install pandas==0.24.2 \
+    && pip install scikit-learn==0.20.3 \
+    && pip install flask==1.0.3
+ 
+EXPOSE 2019
+CMD ["python", "api.py"]
